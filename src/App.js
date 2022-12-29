@@ -32,9 +32,21 @@ const App = () => {
   //   React.createElement(Expenses, { items: expenses })
   // );
 
+  /*
+  passing data from NewExpense to App
+  creating customEventHandler => addExpenseHandler
+  creating custom event => expense
+  creating custom onClick or onChange => onAddExpense
+  */
+
+  const addExpenseHandler = expense => {
+    console.log('App.js')
+    console.log(expense)
+  }
+
   return (
     <div>
-      <NewExpense/>
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses items={expenses} />
     </div>
   );
