@@ -3,13 +3,40 @@ import './ExpenseForm.css';
 
 const ExpenseForm = () => {
 
-    const [enteredTitle, setEnteredTitle] = useState(null);
-    const [eneredAmount, setEnteredAmount] = useState(null);
-    const [enteredDate, setEnteredDate] = useState(null);
+    // const [enteredTitle, setEnteredTitle] = useState(null);
+    // const [eneredAmount, setEnteredAmount] = useState(null);
+    // const [enteredDate, setEnteredDate] = useState(null);
 
-    const titleChangedHandler = (event) => {setEnteredTitle(event.target.value);console.log("enteredTitle entered",enteredTitle) }
-    const amountChangedHandler = (event) => {setEnteredAmount(event.target.value);console.warn("amount entered",eneredAmount)  }
-    const dateChangedHandler = (event) => { setEnteredDate(event.target.value);console.info("date entered",enteredDate) }
+    const [userInput, setUserInput] = useState({enteredTitle:'', enteredAmount:'', enteredDate:''})
+
+    const titleChangedHandler = (event) => {
+        // setUserInput({...userInput,enteredTitle:event.target.value}); 
+        // react schedule states and it will not change instantly. so, we may get incorrect state. hence we use the below method
+
+        // if we use the below approach react will guarantee that the statesnapshot will give you hear in a function will always be the latest state snapshot keeping all schedule state in mind
+        // it should be used, whenever the state update depends on the previous state
+        setUserInput((prevState)=>{
+            console.log({...userInput,...prevState, enteredTitle:event.target.value})
+            return {...prevState, enteredTitle:event.target.value}
+        })
+
+    }
+
+
+    const amountChangedHandler = (event) => {
+        // setUserInput({...userInput,enteredAmount:event.target.value});
+        setUserInput((prevState)=>{
+            console.log( {...prevState, enteredAmount:event.target.value})
+            return {...prevState, enteredAmount:event.target.value}
+        })
+    }
+    const dateChangedHandler = (event) => { 
+        // setUserInput({...userInput,enteredDate:event.target.value});
+        setUserInput((prevState)=>{
+            console.log({...prevState, enteredDate:event.target.value})
+            return {...prevState, enteredDate:event.target.value}
+        })
+    }
 
     return (
         <form>
