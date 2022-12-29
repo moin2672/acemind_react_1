@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -34,6 +34,15 @@ const ExpenseForm = () => {
         Now, using two way binding we can set data to the input field.
         Therefore, when we send empty string for setState function, then it will set the input field empty
         */
+
+
+        /*
+        like props we can take in the function onSaveExpenseData from NewExpense.js
+        here the function onSaveExpenseData(para) is getting executed
+        where as in NewExpense.js the function is being pointed in HTML tag <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+        */
+
+        props.onSaveExpenseData(expenseData);
 
         setEnteredTitle('');
         setEnteredAmount('');
