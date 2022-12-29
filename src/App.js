@@ -39,6 +39,26 @@ const App = () => {
   creating custom onClick or onChange => onAddExpense
   */
 
+/*
+            App
+    |--------|--------|
+  Expenes           NewExpense
+    |                 |
+    |                 |
+ExpenseItem       ExpenseForm  
+    |
+    |
+    |
+ExpenseDate
+
+  
+  PASS STATE DATA VIA PROPS: App -> Expenses -> ExpenseItem -> ExpenseDate
+
+  LIFTING THE STATE UP: ExpenseForm -> NewExpense -> App
+  Lift up as High as necessary
+
+*/
+
   const addExpenseHandler = expense => {
     console.log('App.js')
     console.log(expense)
