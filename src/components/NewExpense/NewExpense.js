@@ -1,7 +1,10 @@
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
+import { useState } from "react";
 
 const NewExpense = (props) => {
+
+    const [isEditing, setIsEditing]=useState(false);
 
     /*
     NewExpense component is the parent component of ExpenseForm component
@@ -28,11 +31,21 @@ const NewExpense = (props) => {
         but in  NewExpense.js it is executed.
         */
         props.onAddExpense(expenseData);
+        setIsEditing(false)
+    }
+
+    const startEditingHandler=()=>{
+        setIsEditing(true)
+    }
+
+    const stopEditingHandler = () =>{
+        setIsEditing(false)
     }
 
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+    {!isEditing && <button onClick={startEditingHandler}>Add New Expense</button>}
+      {isEditing && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={stopEditingHandler} />}
     </div>
   );
 };
